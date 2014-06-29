@@ -1,0 +1,14 @@
+[{ "_id" : "53a658d3842a0d2889fde908", "name" : "color" },
+{ "_id" : "53a65a7e842a0d2889fde909", "name" : "red", "group" : "colors", "parents" : [ "short" ] },
+{ "_id" : "53a65b2c842a0d2889fde90a", "name" : "size" },
+{ "_id" : "53a65ca9842a0d2889fde90b", "name" : "long", "group" : "size", "description" : "48\" Fits shirt size 6-12" },
+{ "_id" : "53a65cbf842a0d2889fde90c", "name" : "Short", "group" : "size", "description" : "36\" Fits shirt size 0-6" },
+{ "_id" : "53a65fb2842a0d2889fde90d", "name" : "black", "group" : "colors", "parents" : [ "long", "short" ] },
+{ "_id" : "53a65fcb842a0d2889fde90e", "name" : "grey", "group" : "colors", "parents" : [ "long", "short" ] },
+{ "_id" : "53a65fe1842a0d2889fde90f", "name" : "ivory", "group" : "colors", "parents" : [ "long", "short" ] },
+{ "_id" : "53a65ff5842a0d2889fde910", "name" : "navy", "group" : "colors", "parents" : [ "long", "short" ] },
+{ "_id" : "53a66007842a0d2889fde911", "name" : "turquoise", "group" : "colors", "parents" : [ "long", "short" ] },
+{ "_id" : "53a6602c842a0d2889fde912", "name" : "pink", "group" : "colors", "parents" : [ "short" ] },
+{ "_id" : "53a66054842a0d2889fde913", "name" : "cobalt", "group" : "colors", "parents" : [ "short" ] },
+{ "_id" : "53a6606a842a0d2889fde914", "name" : "green", "group" : "colors", "parents" : [ "short" ] }
+]

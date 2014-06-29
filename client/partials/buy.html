@@ -1,0 +1,29 @@
+<div style="margin-top: 60px" class="container-narrow"><!-- Begin product photos -->
+  <div class="row">
+    <div class="col-sm-6"><!-- Begin featured image -->
+      <div class="featured"><a id="placeholder" href="#" class="zoom"><img src="/img/buy/images/layer.png"/></a></div><!-- End featured product image -->
+    </div>
+    <div class="col-sm-6">
+      <div id="product-details">
+        <h1 id="title">Wrap It by Tish</h1>
+        <h2 id="price">&#36; 80.00</h2>
+        <form name="buySelectionForm" novalidate>
+          <div class="form-group">
+            <label for="size">Size</label>
+            <select ng-model="selectedSize" id="size" class="form-control" ng-options="item for item in attrs.size.children">
+              <option value="">Select a Size</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="color">Color</label>
+            <select ng-model="selectedColor" id="color" class="form-control" ng-options="item for item in attrs.color.children">
+              <option value="">Select a Color</option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
