@@ -8,7 +8,7 @@
     <title ng-bind="title">WrapIt by Tish -  One versatile wrap creates a wardrobe of ideas!</title>
     <link rel="stylesheet" href="/css/main.css"/>
   </head>
-  <body ng-controller="mainCtrl">
+  <body ng-controller="mainCtrl" ng-attr-id="{{pageId || 'none' }}">
     <div id="notification"></div>
     <ng-include src="viewNav()"></ng-include>
     <ng-view></ng-view>
@@ -16,10 +16,12 @@
       <div class="container"><a href="/"><img id="logo-footer" src="/img/logo-black-letters-100w.png"/></a>
         <div class="copyright">
           <p><b>phone:</b> (787) 484-0377</p>
-          <p><b>email:</b> tish@wrapitbytish.com</p>All rights reserved.Copyright &copy; 2014 Wrap It By Tish
+          <p><b>email:</b> tish@wrapitbytish.com</p>
+          <p>All rights reserved.Copyright &copy; 2014 Wrap It By Tish</p>
         </div>
       </div>
     </footer>
+
     <!-- @if NODE_ENV!='production' -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
@@ -32,6 +34,11 @@
     <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
     <script src="/bower_components/fancybox/source/helpers/jquery.fancybox-media.js"></script>
     <!-- @endif -->
+
+    <!-- @if NODE_ENV!='production' -->
+    <!--<script src="/js/app.min.js"></script> -->
+    <!-- @endif -->
+
     <script>
       $("#owl-carousel").owlCarousel({
         items: 3,
@@ -40,8 +47,5 @@
     </script>
   
 
-    <!-- @if NODE_ENV!='production' -->
-    <!--<script src="/js/app.min.js"></script> -->
-    <!-- @endif -->
   </body>
 </html>

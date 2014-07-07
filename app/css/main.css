@@ -7052,6 +7052,19 @@ footer .copyright {
   clear: both;
   padding-top: 15px;
 }
+#table {
+  display: table;
+}
+.tableRow {
+  display: table-row;
+}
+.tableCell {
+  display: table-cell;
+  height: 50px;
+  width: 12em;
+  vertical-align: middle;
+  vertical-align: bottom;
+}
 #buy .featured {
   text-align: center;
 }
@@ -7059,8 +7072,77 @@ footer .copyright {
   background-color: #f7f7f7;
   width: 300px;
 }
-#buy #product-details #price {
+#buy section {
+  padding-bottom: 20px;
+}
+#buy #size-section {
+  width: 200px;
+}
+#buy #size-section label {
   font-size: 20px;
-  margin: 15px 0;
-  font-weight: bold;
+  font-weight: 400;
+  position: relative;
+  top: -2px;
+}
+#buy #price-section {
+  width: 200px;
+}
+#buy #price-section label {
+  padding-top: 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+#buy #price {
+  font-size: 24px;
+  padding-left: 12px;
+}
+#buy #size-control {
+  width: 100px;
+}
+#buy #buySelectionForm .form-group:before,
+#buy #buySelectionForm .form-group:after {
+  content: " ";
+  display: table;
+}
+#buy #buySelectionForm .form-group:after {
+  clear: both;
+}
+#buy #buySelectionForm .form-group:before,
+#buy #buySelectionForm .form-group:after {
+  content: " ";
+  display: table;
+}
+#buy #buySelectionForm .form-group:after {
+  clear: both;
+}
+#buy #buySelectionForm #swatch {
+  clear: both;
+  margin-top: 20px;
+}
+#buy #buySelectionForm #swatch:before,
+#buy #buySelectionForm #swatch:after {
+  content: " ";
+  display: table;
+}
+#buy #buySelectionForm #swatch:after {
+  clear: both;
+}
+#buy #buySelectionForm #swatch:before,
+#buy #buySelectionForm #swatch:after {
+  content: " ";
+  display: table;
+}
+#buy #buySelectionForm #swatch:after {
+  clear: both;
+}
+#buy #buySelectionForm #swatch .swatch-element {
+  margin-right: 10px;
+  float: left;
+}
+#buy #buySelectionForm #swatch .swatch-element label {
+  width: 50px;
+  height: 35px;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #ccc;
 }

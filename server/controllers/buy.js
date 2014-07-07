@@ -5,73 +5,92 @@
  * Publicly accessible API endpoints.
  */
 
-/* global emit, tojson, print */
+///* global emit, tojson, print */
 
 var route = require('koa-route'),
-    db = require('../config/db');
+    config = require('../config/config'),
+    r = require('rethinkdbdash')(config.rethinkdb),
+    _ = require('lodash');
+
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.get('/api/products/attributes', getProductAttrs));
+  app.use(route.get('/api/product/attributes/size', getProductAttrSize));
+  app.use(route.get('/api/product/attributes/dependents', getProductAttrDependents));
 };
 
-function *getProductAttrs() {
-  var map = function(){
-    //print('map emitting on ' + tojson(this));
 
-    // its the top level
-    if(!this.group) {
-      //emit({'topLevel': this.name}, {children: []});
-      return;
-    }
-    this._id=undefined;
-    // set up groups 
-    emit({'groupName': this.group}, {children: [this.name]});
+function *getProductAttrSize() {
+  var cursor = yield r.table('attributes').filter(r.row('group_id').eq('896000c3-c86b-42ca-b659-751a13ab375d'))
+    .eqJoin('group_id', r.db('wrapit').table('attributeGroups'))
+    .map(r.row.merge(function(doc) {
+      return {
+        right: {
+          group_name: doc('right')('name')
+        }
+      };
+    }))
+    .without({'right': {'id': true, 'name': true}})
+    .zip()
+    .run();
 
-    // add dependents to parents 
-    if(!this.parents) {
-      return;
-    }
-    for(var i = 0; i < this.parents.length; i+=1) {
-      emit(this.parents[i], {children: [this.name]});
-    }
-  };
+    this.body = yield cursor.toArray();
+}
 
-  var reduce = function(key, values) {
-    //print('reduce called on key ' + tojson(key) + ' with values ' + tojson(values));
-    var reduced = {children:[]};
-    for (var i = 0; i < values.length; i+=1) {
-      var inter = values[i];
-      for (var j = 0; j < inter.children.length; j+=1) {
-        reduced.children.push(inter.children[j]);
-      }
-    }
-    return reduced;
-  };
-
-  var finalize = function(key, value) {
-    return value.children;
-  };
+function *getProductAttrDependents() {
 
 
-  var options = {
-    //out: 'attributesTree',
-    out: 'attributesTree',
-    finalize: finalize
-  };
+  var cursor = yield r.db('wrapit').table('attribute_dependents')
+    .eqJoin('parent_id', r.db('wrapit').table('attributes'))
+    .map({
+        'parent_name': r.row('right')('name'),
+        'parent_id': r.row('right')('id'),
+        'child_id': r.row('left')('child_id')
+    })
+    .eqJoin('child_id', r.db('wrapit').table('attributes'))
+    .map(r.row.merge(function(doc) {
+      var groupName = r.db('wrapit').table('attributeGroups').get(doc('right')('group_id'))('name');
+      return {
+        right: {
+          group_name: groupName,
+          parent_name: doc('left')('parent_name')
+        }
+      };
+    }))
+    .zip()
+    .pluck('name', 'hex', 'parent_name', 'group_name')
+    .group('parent_name', 'group_name')
+    .ungroup()
+    .map(function(row){
+      var val = row('group').nth(0).add(r.expr('.')).add(row('group').nth(1));
+      return row.merge({group: val });
+    })
+    .run();
 
-  var collection = yield db.attributes.mapReduce(map, reduce, options);
-  var res = yield collection.find().toArray();
-  var firstLevel = {};
-  var secondLevel = [];
-  for (var i = 0; i < res.length; i+=1) {
-    if (res[i]._id.groupName)
-      firstLevel[res[i]._id.groupName] = {children : res[i].value};
-    else
-      secondLevel.push(res[i]);
+  var result = yield cursor.toArray();
 
-  }
-  this.body = {firstLevel: firstLevel, secondLevel: secondLevel};
+  var obj = {};
+  result.forEach(function(row){
+    obj[row.group] = row.reduction;
+  });
+
+  
+//  var group = _.groupBy(result, 'parent_name');
+//  var hi = _.groupBy(group[0], 'group_name');
+//  var group1 = _.forEach(group, function(row){
+//    row = _.groupBy(row, 'group_name');
+//  })
+
+
+  this.body = obj;
+
+//  var res = {};
+//  var grouped = _.(result, function(row){
+//    var value = {};
+//    value[row.group[1]] = row.reduction;
+//    res[row.group[0]] = value;
+//  });
+//  this.body = res
 }
 
 

@@ -5,7 +5,6 @@
  */
 
 var config = require('./server/config/config')
-  , db = require('./server/config/db')
   , koaConfig = require('./server/config/koa')
   , co = require('co')
   , koa = require('koa')
@@ -14,8 +13,6 @@ var config = require('./server/config/config')
 module.exports = app;
 
 co(function *() {
-  // initialize mongodb
-  yield db.connect();
 
   // koa config
   koaConfig(app);

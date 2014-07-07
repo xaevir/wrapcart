@@ -12,15 +12,18 @@ angular.module('wrapApp', ['ngRoute'])
       .when('/', {
         templateUrl: '/partials/home.html',
         title: 'WrapIt by Tish -  One versatile wrap creates a wardrobe of ideas!',
+        pageId: 'home'
       })
       .when('/contact', {
         templateUrl: '/partials/contact.html',
         title: 'Contact - WrapIt by Tish',
+        pageId: 'contact'
       })
       .when('/buy', {
         templateUrl: '/partials/buy.html',
         title: 'Buy - WrapIt by Tish',
-        controller: 'buyCtrl'
+        controller: 'buyCtrl',
+        pageId: 'buy'
       })
       .otherwise({
         redirectTo: '/'
@@ -32,5 +35,7 @@ angular.module('wrapApp', ['ngRoute'])
       // set page title
       $rootScope.title = current.$$route.title;
       $rootScope.showNav = (current.$$route.originalPath === '/') ?  false : true;
+      // set page id
+      $rootScope.pageId = current.$$route.pageId;
     });
   });

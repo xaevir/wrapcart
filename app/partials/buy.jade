@@ -1,0 +1,26 @@
+.container-narrow(style="margin-top: 60px;")
+  .row
+    .col-sm-6
+      .featured
+        a#placeholder.zoom(href="#")
+          img(src="/img/buy/images/layer.png")
+    .col-sm-6
+      #product-details
+        h1#title WrapIt
+        form#buySelectionForm.form-horizontal(name="buySelectionForm", novalidate="novalidate")
+          section#size-section
+            .form-group
+              label.control-label.col-sm-3(for="size-control") Size
+              .col-sm-9
+                select#size-control.form-control(ng-model="selected.size", ng-options="size.name as size.name for size in options.size", ng-change="changeSize()")
+          section#price-section
+            .form-group
+              label.control-label.col-sm-3
+                .tableCell Price
+              .col-sm-9
+                p#price.form-control-static.tableCell {{selected.price | currency}}
+          section
+            #swatch
+              .swatch-element(ng-repeat="color in options.color")
+                label(for="{{color.name}}", style="background-color: {{color.hex}}")
+                  input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")

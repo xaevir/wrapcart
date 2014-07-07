@@ -25,7 +25,6 @@ comongo.connect = function *() {
   var db = comongo.db = yield connect(config.mongo.url);
 
   // export default collections
-  comongo.attributes = yield db.collection('attributes');
-  comongo.product = yield db.collection('product');
+  comongo.counters = yield db.collection('product');
 };
 

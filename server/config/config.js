@@ -20,8 +20,10 @@ var platformConfig = {
     app: {
       port: 3000
     },
-    mongo: {
-      url: 'mongodb://localhost:27017/wrapit-dev'
+    rethinkdb: {
+      host: 'localhost',
+      port: '28015',
+      db: 'wrapit'
     },
   },
 
