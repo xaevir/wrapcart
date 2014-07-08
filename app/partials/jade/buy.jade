@@ -18,9 +18,9 @@
               label.control-label.col-sm-3
                 .tableCell Price
               .col-sm-9
-                p#price.form-control-static.tableCell {{selected.price | currency}}
+                p#price.form-control-static.tableCell(animate-on-change="selected.price") {{selected.price | currency}}
           section
             #swatch
               .swatch-element(ng-repeat="color in options.color")
                 label(for="{{color.name}}", style="background-color: {{color.hex}}")
-                  input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")
+                input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")

@@ -4,13 +4,13 @@
  * Top level module. Lists all the other modules as dependencies.
  */
 
-angular.module('wrapApp', ['ngRoute'])
+angular.module('wrapApp', ['ngRoute', 'ngAnimate'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
-        templateUrl: '/partials/home.html',
+        templateUrl: '/partials/index.html',
         title: 'WrapIt by Tish -  One versatile wrap creates a wardrobe of ideas!',
         pageId: 'home'
       })

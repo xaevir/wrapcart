@@ -7146,3 +7146,17 @@ footer .copyright {
   border-radius: 2px;
   border: 1px solid #ccc;
 }
+.highlight-add {
+  -webkit-transition: all 1s linear;
+  background-color: red;
+}
+.highlight-add-active {
+  background-color: yellow;
+}
+.highlight-remove {
+  background-color: yellow;
+  -webkit-transition: all 1s linear;
+}
+.highlight-remove-active {
+  background-color: transparent;
+}
