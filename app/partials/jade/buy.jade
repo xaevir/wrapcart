@@ -8,19 +8,24 @@
       #product-details
         h1#title WrapIt
         form#buySelectionForm.form-horizontal(name="buySelectionForm", novalidate="novalidate")
+          h1 add size description
           section#size-section
             .form-group
               label.control-label.col-sm-3(for="size-control") Size
               .col-sm-9
-                select#size-control.form-control(ng-model="selected.size", ng-options="size.name as size.name for size in options.size", ng-change="changeSize()")
-          section#price-section
+                select#size-control.form-control(ng-model="selected.size"
+                  ng-options="size.name as size.name for size in options.size")
+          section.price-section
             .form-group
               label.control-label.col-sm-3
                 .tableCell Price
               .col-sm-9
-                p#price.form-control-static.tableCell(animate-on-change="selected.price") {{selected.price | currency}}
+                .price()
+                  p.price.form-control-static.tableCell(animate-on-change="selected.price"
+                    ng-repeat="price in options.price | filter: {parents: selected.size}"
+                    ) {{price.name | currency}}
           section
             #swatch
-              .swatch-element(ng-repeat="color in options.color")
+              .swatch-element(ng-repeat="color in options.color | filter:{parents: selected.size }")
                 label(for="{{color.name}}", style="background-color: {{color.hex}}")
                 input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")

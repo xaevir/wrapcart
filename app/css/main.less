@@ -3,6 +3,7 @@
 @import (inline) "../bower_components/owl.carousel/dist/assets/owl.carousel.css";
 @import (inline) "../bower_components/owl.carousel/dist/assets/owl.theme.default.css";
 @import (inline) "../bower_components/fancybox/source/jquery.fancybox.css";
+@import (inline) "animate.css";
 
 //@media (min-width: 1070px) {//992
   //.container {
@@ -661,18 +662,35 @@ footer {
       top: -2px;
     }
   }
-  #price-section {
+  .price-section {
     width: 200px;
      label {
       padding-top: 0;
       font-size: 20px;
       font-weight: 400;
     }
-  }
+    .price {
+      font-size: 24px;
+      padding-left: 12px;
+      color: #ff4b59;
+    }
+    .highlight-add {
+      -webkit-transition: all .5s linear;
+      //color: #ff4b59;
+      -webkit-animation: bounce 1s;
+      animation: bounce 1s;
+    }
 
-  #price {
-    font-size: 24px;
-    padding-left: 12px;
+    .highlight-add-active {
+      //color: #ff72b2;
+    }
+    .highlight-remove {
+      //color: #ff72b2;
+      -webkit-transition: all .5s linear;
+    }
+    .highlight-remove-active {
+      //color: #ff4b59;
+    }
   }
   #size-control {
     width: 100px;
@@ -701,20 +719,6 @@ footer {
   }
 }
 
-.highlight-add {
-  -webkit-transition: all 1s linear;
-  background-color: red;
-}
 
-.highlight-add-active {
-  background-color: yellow;
-}
 
-.highlight-remove {
-  background-color: yellow;
-  -webkit-transition: all 1s linear;
-}
 
-.highlight-remove-active {
-  background-color: transparent;
-}

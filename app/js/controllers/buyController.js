@@ -10,24 +10,24 @@ angular.module('wrapApp')
     $scope.color = '';
     $scope.options = {};
     $scope.changeSize = function() {
-      $scope.options.color = $scope.dependents[$scope.selected.size + '.color'];
-      $scope.selected.price = $scope.dependents[$scope.selected.size + '.price'][0].name;
+      //$scope.options.color = $scope.dependents[$scope.selected.size + '.color'];
+      //$scope.selected.price = $scope.dependents[$scope.selected.size + '.price'][0].name;
     };
 
 
-    var first = $http.get('/api/product/attributes/size'),
-        second = $http.get('/api/product/attributes/dependents');
+    $http.get('/api/product/attributes')
+      .success(function (attrs) {
+        $scope.options.size = attrs.size;
+        $scope.options.color = attrs.color;
+        $scope.options.price = attrs.price;
 
-    $q.all([first, second]).then(function(result){
-      $scope.options.size = result[0].data;
-      $scope.dependents = result[1].data;
-      // set default
-      $scope.selected.size = result[0].data[1].name;
-      $scope.changeSize();
-    },
-    function(error) {
-      $scope.error = error;
-    });
+        /* set default */
+        $scope.selected.size = $scope.options.size[0].name;
+      })
+      .error(function (error) {
+        $scope.error = error;
+      });
+
   });
 
 

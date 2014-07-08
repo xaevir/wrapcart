@@ -17,6 +17,7 @@ var route = require('koa-route'),
 exports.init = function (app) {
   app.use(route.get('/api/product/attributes/size', getProductAttrSize));
   app.use(route.get('/api/product/attributes/dependents', getProductAttrDependents));
+  app.use(route.get('/api/product/attributes', getProductAttributes));
 };
 
 
@@ -37,9 +38,35 @@ function *getProductAttrSize() {
     this.body = yield cursor.toArray();
 }
 
+function *getProductAttributes() {
+  var cursor = yield r.db('wrapit').table('attributes')
+    .eqJoin('groupId', r.db('wrapit').table('attributeGroups'))
+    .map(r.row.merge(function(doc) {
+      return {
+        right: {
+          groupName: doc('right')('name')
+        }
+      };
+    }))
+    .without({'right': {'id': true, 'name': true}, 'left': 'groupId'})
+    .zip()
+    .group('groupName')
+    .run();
+
+  var result = yield cursor.toArray();
+
+  var obj = {};
+  result.forEach(function(row){
+    obj[row.group] = row.reduction;
+  });
+
+
+  this.body = obj;
+
+}
+
+
 function *getProductAttrDependents() {
-
-
   var cursor = yield r.db('wrapit').table('attribute_dependents')
     .eqJoin('parent_id', r.db('wrapit').table('attributes'))
     .map({
