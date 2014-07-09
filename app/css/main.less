@@ -654,7 +654,7 @@ footer {
     padding-bottom: 20px;
   }
   #size-section {
-    width: 200px;
+    //width: 200px;
     label {
       font-size: 20px;
       font-weight: 400;
@@ -662,34 +662,25 @@ footer {
       top: -2px;
     }
   }
-  .price-section {
-    width: 200px;
+  #price-section {
+    width: 250px;
      label {
       padding-top: 0;
       font-size: 20px;
       font-weight: 400;
+      line-height: 1;
+    }
+    .wrapper {
+      position: relative;
     }
     .price {
+      line-height: 1;
       font-size: 24px;
+      padding: 0;
       padding-left: 12px;
       color: #ff4b59;
-    }
-    .highlight-add {
-      -webkit-transition: all .5s linear;
-      //color: #ff4b59;
-      -webkit-animation: bounce 1s;
-      animation: bounce 1s;
-    }
-
-    .highlight-add-active {
-      //color: #ff72b2;
-    }
-    .highlight-remove {
-      //color: #ff72b2;
-      -webkit-transition: all .5s linear;
-    }
-    .highlight-remove-active {
-      //color: #ff4b59;
+      margin: 0;
+      bottom: -1px;
     }
   }
   #size-control {
@@ -719,6 +710,144 @@ footer {
   }
 }
 
+/*
+@-webkit-keyframes pa {
+   0% { fill: @pretzel-green; }
+   08% { fill: @pretzel-green; }
+   98% { fill: @pretzel-green; }
+   100% { fill: #1abc9c; }
+}
+@-webkit-keyframes de {
+   0% { fill: #1abc9c; }
+   10% { fill: #1abc9c; }
+   12% { fill: @pretzel-green; }
+   98% { fill: @pretzel-green; }
+   100% { fill: #1abc9c; }
+}
+*/
 
+
+.desc-fade.ng-enter {
+  -webkit-animation: red-to-blue 1s 2s;
+}
+
+@-webkit-keyframes red-to-blue {
+  from { background:red; }
+  to { background:blue; }
+}
+
+.desc-fade.ng-leave {
+  -webkit-animation:0.5s red-to-blue;
+  animation:0.5s red-to-blue;
+}
+
+
+
+
+/* Action we're hiding */
+.animate-fade.ng-leave {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  opacity: 1;
+}
+
+.animate-fade.ng-leave-active {
+  opacity: 0;
+}
+
+/* Action we're showing */
+.animate-fade.ng-enter {
+  -webkit-transition: all .3s ease .3s;
+  transition: all .3s ease .3s;
+  opacity: 0;
+  -webkit-animation: bounce 1s;
+  animation: bounce 1s;
+
+}
+.animate-fade.ng-enter-active {
+    opacity: 1;
+}
+.animate-fade.ng-enter, .animate-fade.ng-leave {
+    display: block !important;
+}
+.animate-fade {
+    position: absolute;
+}
+
+.phone-listing.ng-enter,
+.phone-listing.ng-leave,
+.phone-listing.ng-move {
+  -webkit-transition: 2.5s linear all;
+  -moz-transition: 2.5s linear all;
+  -o-transition: 2.5s linear all;
+  transition: 2.5s linear all;
+}
+
+.phone-listing.ng-enter,
+.phone-listing.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.phone-listing.ng-move.ng-move-active,
+.phone-listing.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 120px;
+}
+
+.phone-listing.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.phone-listing.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.slide.ng-enter {
+  -webkit-transition: all .5s linear;
+  color: #ff4b59;
+  -webkit-animation: bounce 1s;
+  animation: bounce 1s;
+}
+.slide.ng-enter-active { 
+  color: yellow ;
+}
+.slide.ng-leave {
+  color: yellow;
+}
+.slide.ng-leave-active { 
+  color: #ff4b59;
+}
+
+.highlight-add {
+  -webkit-transition: all .5s linear;
+  color: #ff4b59;
+  -webkit-animation: bounce 1s;
+  animation: bounce 1s;
+
+}
+
+.highlight-add-active {
+  color: #ff72b2;
+}
+.highlight-remove {
+  //color: #ff72b2;
+  -webkit-transition: all .5s linear;
+}
+.highlight-remove-active {
+  //color: #ff4b59;
+}
 
 
