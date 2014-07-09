@@ -10193,6 +10193,11 @@ footer .copyright {
   vertical-align: middle;
   vertical-align: bottom;
 }
+#buy .btn.active {
+  color: #fff;
+  background-color: #ff4b59;
+  border-color: #db2836;
+}
 #buy .featured {
   text-align: center;
 }
@@ -10295,20 +10300,27 @@ footer .copyright {
    100% { fill: #1abc9c; }
 }
 */
-.desc-fade.ng-enter {
-  -webkit-animation: red-to-blue 1s 2s;
+.bag-boy.ng-leave {
+  -webkit-animation: bag-boy-fade-out 1s;
 }
-@-webkit-keyframes red-to-blue {
+@-webkit-keyframes bag-boy-fade-out {
   from {
-    background: red;
+    opacity: 1;
   }
   to {
-    background: blue;
+    opacity: 0;
   }
 }
-.desc-fade.ng-leave {
-  -webkit-animation: 0.5s red-to-blue;
-  animation: 0.5s red-to-blue;
+.bag-boy.ng-enter {
+  -webkit-animation: bag-boy-fade-in 1s;
+}
+@-webkit-keyframes bag-boy-fade-in {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: auto;
+  }
 }
 /* Action we're hiding */
 .animate-fade.ng-leave {

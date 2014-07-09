@@ -9,33 +9,16 @@
         h1#title WrapIt
         form#buySelectionForm(name="buySelectionForm", novalidate="novalidate")
 
-
-          //label.control-label Group By:
-          //.btn-group(ng-model='groupBy.value', data-bs-radio-group='')
-            label.btn.btn-default(ng-repeat="size in options.size") {{size.name}}
-              input(type="radio")
-            label.btn.btn-default
-              input.btn.btn-default(name='all', type='radio', value='all')
-              | All
-            label.btn.btn-default
-              input.btn.btn-default(name='room', type='radio', value='room')
-              | Room
-            label.btn.btn-default
-              input.btn.btn-default(name='category', type='radio', value='category')
-              | Category
-
           section#size-section
             .form-group
               p(style="font-size: 20px;") Size
-              .btn-group(ng-model="data.selectedOption" bs-radio-group)
+              .btn-group(ng-model="selected.size" bs-radio-group)
                 label.btn.btn-lg.btn-default(ng-repeat="size in options.size")
-                  input(type="radio" ng-value="{{size}}")
-                  | {{size.name}}
+                  input(type="radio" value="{{size.name}}")
+                  | {{size.name | capitalize }}
+            .height-holder
+              p.fade-replace(style="font-size: 20px;" ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
 
-                //select#size-control.form-control(ng-model="selected.size"
-                  ng-options="size as size.name for size in options.size")
-
-            p.desc-fade(style="font-size: 20px;" ng-repeat="size in options.size | filter:{name: selected.size.name} ") {{size.description}}
           section#price-section
             .form-group
               label.control-label.col-sm-3
@@ -43,10 +26,10 @@
               .col-sm-9
                 .tableCell.wrapper
                   p.price.form-control-static.animate-fade(
-                    ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.size.name}))"
+                    ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.size}))"
                     ) {{price.name | currency}}
           section#swatch
             h1 hello swatch
-            .swatch-element(ng-repeat="color in options.color | filter:{parents: selected.size.name }")
+            .swatch-element(ng-repeat="color in options.color | filter:{parents: selected.size}")
               label(for="{{color.name}}", style="background-color: {{color.hex}}")
               input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")
