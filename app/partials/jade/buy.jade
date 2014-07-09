@@ -16,8 +16,22 @@
                 label.btn.btn-lg.btn-default(ng-repeat="size in options.size")
                   input(type="radio" value="{{size.name}}")
                   | {{size.name | capitalize }}
+            div#holder
+              div#slogans
+                p.slogan
+                  strong TWEENMAX
+                p.slogan
+                  strong IS GREAT
+                p.slogan
+                  strong YOU CAN
+                p.slogan
+                  strong ANIMATE
+                p.slogan
+                  strong EVERYTHING
+                p.slogan
+                  strong WITH
             .height-holder
-              p.fade-replace(style="font-size: 20px;" ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
+              p.flip-replace(style="font-size: 20px;" ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
 
           section#price-section
             .form-group
