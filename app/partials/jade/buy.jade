@@ -1,49 +1,35 @@
-.container-narrow(style="margin-top: 60px;")
+.container(style="margin-top: 60px;")
   .row
     .col-sm-6
-      .featured
+      section#image
         a#placeholder.zoom(href="#")
           img(src="/img/buy/images/layer.png")
     .col-sm-6
-      #product-details
         h1#title WrapIt
         form#buySelectionForm(name="buySelectionForm", novalidate="novalidate")
-
-          section#size-section
+          section#size
+            p(style="font-size: 20px;") Size
+            .radio(ng-repeat="size in options.size" for="{{size.name}}")
+              label
+                input(id="{{size.name}}" type="radio" ng-model="selected.size" value="{{size.name}}" name="size")
+                | <span style="font-size: 16px; margin-right: 10px;">{{size.name | capitalize }}</span>
+                | <span class="text-muted">{{size.description}}</span>
+          section#description
             .form-group
-              p(style="font-size: 20px;") Size
-              .btn-group(ng-model="selected.size" bs-radio-group)
-                label.btn.btn-lg.btn-default(ng-repeat="size in options.size")
-                  input(type="radio" value="{{size.name}}")
-                  | {{size.name | capitalize }}
-            div#holder
-              div#slogans
-                p.slogan
-                  strong TWEENMAX
-                p.slogan
-                  strong IS GREAT
-                p.slogan
-                  strong YOU CAN
-                p.slogan
-                  strong ANIMATE
-                p.slogan
-                  strong EVERYTHING
-                p.slogan
-                  strong WITH
-            .height-holder
-              p.flip-replace(style="font-size: 20px;" ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
-
-          section#price-section
-            .form-group
-              label.control-label.col-sm-3
-                .tableCell Price
+              label.control-label.col-sm-3 Description
               .col-sm-9
-                .tableCell.wrapper
-                  p.price.form-control-static.animate-fade(
+                .height-holder
+                  p.fade-replace(ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
+          section#price
+            .form-group
+              label.control-label.col-sm-3 Price
+              .col-sm-9
+                .height-holder
+                  p.fade-replace-1(
                     ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.size}))"
                     ) {{price.name | currency}}
-          section#swatch
-            h1 hello swatch
-            .swatch-element(ng-repeat="color in options.color | filter:{parents: selected.size}")
+          section#color
+            h1 Colors
+            .swatch-element.multi-bounce(ng-repeat="color in options.color | filter:{parents: selected.size}")
               label(for="{{color.name}}", style="background-color: {{color.hex}}")
               input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")

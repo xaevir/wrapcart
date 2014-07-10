@@ -3,7 +3,7 @@
 @import (inline) "../bower_components/owl.carousel/dist/assets/owl.carousel.css";
 @import (inline) "../bower_components/owl.carousel/dist/assets/owl.theme.default.css";
 @import (inline) "../bower_components/fancybox/source/jquery.fancybox.css";
-@import (inline) "animate.css";
+//@import (inline) "animate.css";
 
 //@media (min-width: 1070px) {//992
   //.container {
@@ -642,76 +642,66 @@ footer {
 
 
 #buy {
-  .btn.active {
-    color: #fff;
-    background-color: #ff4b59;
-    border-color: #db2836;
-    //background-color: #39b3d7;
-    //border-color: #269abc;
+  form#buySelectionForm {
+    .form-group {
+      .clearfix();
     }
-  .featured {
+  }
+  section#image {
     text-align: center;
     img {
       background-color: #f7f7f7;
       width: 300px;
     }
   }
-  section {
-    //border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-  }
-  #size-section {
-    //width: 200px;
-    label {
-      font-size: 20px;
-      font-weight: 400;
-      position: relative;
-      top: -2px;
-    }
-  }
-  #price-section {
-    width: 250px;
-     label {
-      padding-top: 0;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1;
-    }
-    .wrapper {
+  section#size {
+    label.control-label {
       position: relative;
     }
-    .price {
-      line-height: 1;
-      font-size: 24px;
-      padding: 0;
-      padding-left: 12px;
-      color: #ff4b59;
-      margin: 0;
-      bottom: -1px;
+    label.btn {
+      //font-size: 20px;
+      font-weight: 400;
+    }
+    .btn.active {
+      color: #fff;
+      //background-color: #ff4b59;
+      //border-color: #db2836;
+      background-color: #5bc0de;
+      border-color: #46b8da;
     }
   }
-  #size-control {
-    width: 100px;
-  }
-  #buySelectionForm {
-    .form-group {
-    //  max-width: 250px;
-      .clearfix();
+  section#price {
+    p {
+      //font-size: 40px;
+      //color: #ff4b59;
+      margin-bottom: 0;
     }
-    #swatch {
-      clear: both;
-      margin-top: 20px;
-      .clearfix();
-      .swatch-element {
-        margin-right: 10px;
-        float: left;
-        label {
-          width: 50px;
-          height: 35px;
-          display: block;
-          border-radius: 2px;
-          border: 1px solid #ccc;
-        }
+  }
+  section#description {
+    p {
+      margin: 0px;
+      font-size: 20px;
+    }
+  }
+  section#color {
+    clear: both;
+    .clearfix();
+    h1 {
+      margin-top: 0;
+      margin-bottom: .5em;
+    }
+    .swatch-element {
+      margin-right: 10px;
+      float: left;
+      label {
+        width: 50px;
+        height: 35px;
+        display: block;
+        border-radius: 2px;
+        //border: 1px solid #ccc;
+      }
+      input {
+        display: none;
       }
     }
   }
@@ -736,6 +726,7 @@ footer {
 
 .height-holder {
   position: relative;
+  -webkit-perspective: 200px;
 }
 
 .bag-boy.ng-leave {
@@ -864,50 +855,4 @@ footer {
 .highlight-remove-active {
   //color: #ff4b59;
 }
-
-
-html, body, div {
-			margin: 0;
-			padding: 0;
-		}
-		
-		body{
-			background-color: #f5f5f5;
-			color: #444;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			font-size: 16px;
-		    line-height: 1 em;
-		}
-		
-		#holder{
-			
-			position: relative;
-			width: 600px;
-			margin: 100px auto;
-			
-			-webkit-user-select: none;  
-			-moz-user-select: none;    
-			-ms-user-select: none;     
-			-o-user-select: none;
-			user-select: none;
-		}
-		
-		#slogans{
-			position: relative;
-			top: 0px;
-			right: 0px;
-		}
-		
-		p.slogan{
-			text-rendering: optimizeLegibility;
-			margin: 0px;
-			font-size: 60px;
-			text-transform: uppercase;
-		}
-		
-		p.slogan strong{
-			display:block;
-			position:relative;
-			opacity:0;
-		}
 
