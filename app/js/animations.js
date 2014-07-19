@@ -42,7 +42,9 @@ angular.module('wrapApp')
 
         TweenMax.from(element, 0.5, {
           width:0,
-          ease: 'Power4.easeInOut'
+          //ease: 'Power4.easeInOut'
+          //ease: 'Linear.easeNone'
+          ease:'Power2.easeIn'
         });
 
         //element.css({opacity: 0});
@@ -55,7 +57,9 @@ angular.module('wrapApp')
       leave: function(element, done) {
         TweenMax.to(element, 0.5, {
           width:0,
-          ease: 'Power0.easeIn'
+          //ease: 'Power0.easeIn'
+          //ease: 'Linear.easeNone'
+          ease:'Power2.easeIn'
         });
 
         $window.setTimeout(done, 0.5 * 1000);
@@ -173,6 +177,8 @@ angular.module('wrapApp')
 
     return {
       enter: function(element, done) {
+
+       var height = element.height();
 
         element.parent().height(element.height());
 

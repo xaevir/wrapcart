@@ -9,8 +9,8 @@ html(ng-app="wrapApp")
     link(rel="stylesheet", href="/css/main.css")
   body(ng-controller="mainCtrl", ng-attr-id="{{pageId || 'none' }}")
     ng-include(src="viewNav()")
-    ng-view
-    include footer
+    ng-view#view
+    include footer 
 
     // @exclude NODE_ENV='production'
     script(src="/bower_components/jquery/jquery.js")
@@ -24,13 +24,17 @@ html(ng-app="wrapApp")
     script(src="/js/directives.js")
     script(src="/js/filters.js")
     script(src="/js/animations.js")
+    script(src="/js/product-browser.js")
+    script(src="/js/submit.js")
     //script(src="/partials/templates.js")
     script(src="/bower_components/owl.carousel/dist/owl.carousel.js")
     script(src="/bower_components/fancybox/source/jquery.fancybox.js")
     script(src="/bower_components/fancybox/source/helpers/jquery.fancybox-media.js")
     script(src="/bower_components/greensock/src/minified/TweenMax.min.js")
-    script(src="/bower_components/greensock/src/minified/TimelineLite.min.js")
     script(src="/bower_components/angular-strap/dist/angular-strap.js")
+    script(src="/bower_components/stringjs/lib/string.min.js")
+    script(src="/bower_components/snap.svg/dist/snap.svg-min.js")
+    script(src="/bower_components/multiline/browser.js")
     // @endexclude
 
     // @if NODE_ENV="production" 

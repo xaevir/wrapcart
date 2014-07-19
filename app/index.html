@@ -10,12 +10,12 @@
   </head>
   <body ng-controller="mainCtrl" ng-attr-id="{{pageId || 'none' }}">
     <ng-include src="viewNav()"></ng-include>
-    <ng-view></ng-view>
+    <ng-view id="view"></ng-view>
     <footer>
       <div class="container"><a href="/"><img id="logo-footer" src="/img/logo-black-letters-100w.png"></a>
         <div class="copyright">
           <p><b>phone:</b> (787) 484-0377</p>
-          <p><b>email:</b> tish@wrapitbytish.com</p>All rights reserved.Copyright &copy; 2014 Wrap It By Tish
+          <p><b>email:</b> tish@wrapitbytish.com</p>All rights reserved. Copyright &copy; 2014 Wrap It By Tish
         </div>
       </div>
     </footer>
@@ -30,13 +30,17 @@
     <script src="/js/directives.js"></script>
     <script src="/js/filters.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/product-browser.js"></script>
+    <script src="/js/submit.js"></script>
     <!--script(src="/partials/templates.js")-->
     <script src="/bower_components/owl.carousel/dist/owl.carousel.js"></script>
     <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
     <script src="/bower_components/fancybox/source/helpers/jquery.fancybox-media.js"></script>
     <script src="/bower_components/greensock/src/minified/TweenMax.min.js"></script>
-    <script src="/bower_components/greensock/src/minified/TimelineLite.min.js"></script>
     <script src="/bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="/bower_components/stringjs/lib/string.min.js"></script>
+    <script src="/bower_components/snap.svg/dist/snap.svg-min.js"></script>
+    <script src="/bower_components/multiline/browser.js"></script>
     <script>
       $("#owl-carousel").owlCarousel({
         items: 3,

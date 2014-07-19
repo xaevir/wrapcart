@@ -4,7 +4,7 @@
  * Top level module. Lists all the other modules as dependencies.
  */
 
-angular.module('wrapApp', ['ngRoute', 'ngAnimate', 'mgcrea.ngStrap'])
+angular.module('wrapApp', ['ngRoute', 'ngAnimate', 'ngMessages', 'mgcrea.ngStrap', 'rcForm'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 

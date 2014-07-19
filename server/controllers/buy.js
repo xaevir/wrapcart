@@ -10,7 +10,8 @@
 var route = require('koa-route'),
     config = require('../config/config'),
     r = require('rethinkdbdash')(config.rethinkdb),
-    _ = require('lodash');
+    _ = require('lodash'),
+    S = require('string');
 
 
 // register koa routes
@@ -18,7 +19,17 @@ exports.init = function (app) {
   app.use(route.get('/api/product/attributes/size', getProductAttrSize));
   app.use(route.get('/api/product/attributes/dependents', getProductAttrDependents));
   app.use(route.get('/api/product/attributes', getProductAttributes));
+  app.use(route.get('/api/product/photos', getProductPhotos));
 };
+
+function *getProductPhotos() {
+  var cursor = yield r.table('photos')
+    .run();
+
+  var result = yield cursor.toArray();
+  result.reverse(); 
+  this.body = result;
+}
 
 
 function *getProductAttrSize() {
@@ -55,15 +66,17 @@ function *getProductAttributes() {
 
   var result = yield cursor.toArray();
 
-  var obj = {};
-  result.forEach(function(row){
-    obj[row.group] = row.reduction;
-  });
-
+  var obj = _.reduce(result, function (reduced, row) {
+    var grp = S(S(row.group).slugify().s).camelize().s;
+    reduced[grp] = row.reduction;
+    return reduced;
+  }, {});
 
   this.body = obj;
-
 }
+
+
+
 
 
 function *getProductAttrDependents() {

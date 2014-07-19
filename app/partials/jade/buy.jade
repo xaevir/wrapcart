@@ -1,35 +1,62 @@
-.container(style="margin-top: 60px;")
+.container.buy-page-wrapper
   .row
+    .col-sm-6
+      #dress-display
+        h1 View the Different Styles in Light and Dark
+        .outer-nav
+          ul.nav.nav-pills
+            li.active(ng-class="{'active':photosGroup=='light'}") 
+              a(href="#" ng-click="photosGroup = 'light'") Light
+            li(ng-class="{'active':photosGroup=='dark'}") 
+              a(href="#" ng-click="photosGroup = 'dark'") Dark
+        ul#dress-stage
+          .height-holder
+            li.fade-replace-1(ng-repeat="photo in photosList | filter: {group: photosGroup}")
+              a(href="#" ng-click="activatePhoto(photo.name)")
+                img(ng-src="/img/mannequin/{{photo.name}}-small.jpg")
+
     .col-sm-6
       section#image
         a#placeholder.zoom(href="#")
-          img(src="/img/buy/images/layer.png")
-    .col-sm-6
-        h1#title WrapIt
+          img(ng-src="/img/mannequin/{{photoActive}}-medium.jpg")
+  div#product-name(hue-change ng-include="'/img/buy-title.svg'" )
+  .row
+    .col-md-6.col-md-offset-3
         form#buySelectionForm(name="buySelectionForm", novalidate="novalidate")
-          section#size
-            p(style="font-size: 20px;") Size
-            .radio(ng-repeat="size in options.size" for="{{size.name}}")
-              label
-                input(id="{{size.name}}" type="radio" ng-model="selected.size" value="{{size.name}}" name="size")
-                | <span style="font-size: 16px; margin-right: 10px;">{{size.name | capitalize }}</span>
-                | <span class="text-muted">{{size.description}}</span>
+          .row
+            .col-md-6
+              section#dress-length
+                h2.title Wrap Length
+                .radio(ng-repeat="dressLength in options.dressLength" for="{{dressLength.name}}")
+                  label
+                    input(id="{{dressLength.name}}" type="radio" ng-model="selected.dressLength" value="{{dressLength.name}}" name="dressLength")
+                    | <span style="font-size: 16px; margin-right: 10px;">{{dressLength.name | capitalize }}</span>
+                    | <span class="text-muted">{{dressLength.description}}</span>
+            .col-md-6
+              section#neck-opening
+                h2.title Neck Opening
+                .radio(ng-repeat="neckOpening in options.neckOpening" for="{{neckOpening.name}}")
+                  label
+                    input(id="{{neckOpening.name}}" type="radio" ng-model="selected.neckOpening" value="{{neckOpening.name}}" name="neckOpening")
+                    | <span style="font-size: 16px; margin-right: 10px;">{{neckOpening.name | capitalize }}</span>
+                    | <span class="text-muted">{{neckOpening.description}}</span>
+
           section#description
-            .form-group
-              label.control-label.col-sm-3 Description
-              .col-sm-9
-                .height-holder
-                  p.fade-replace(ng-repeat="size in options.size | filter:{name: selected.size} ") {{size.description}}
+            h2.title Description
+            p.
+              The material is made from a modern fabric. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
           section#price
             .form-group
               label.control-label.col-sm-3 Price
               .col-sm-9
                 .height-holder
-                  p.fade-replace-1(
-                    ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.size}))"
+                  p.bounce-fade(
+                    ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.dressLength}))"
                     ) {{price.name | currency}}
           section#color
-            h1 Colors
-            .swatch-element.multi-bounce(ng-repeat="color in options.color | filter:{parents: selected.size}")
+            h2.title Available Colors
+            .swatch.multi-bounce(ng-repeat="color in options.color | filter:{parents: selected.dressLength}")
               label(for="{{color.name}}", style="background-color: {{color.hex}}")
               input(id="{{color.name}}", type="radio", ng-model="selected.color", value="{{color.name}}", name="color")
+          Section#buy-button
+            button.btn.btn-danger.btn-lg.btn-block(type="button") Buy
