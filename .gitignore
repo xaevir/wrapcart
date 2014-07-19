@@ -1,5 +1,4 @@
 /node_modules/
 /art
 /dist
-bower_components/
 app/partials/*.html

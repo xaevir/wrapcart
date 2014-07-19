@@ -1,0 +1,12 @@
+{
+  "name": "elevatezoom",
+  "homepage": "https://github.com/elevateweb/elevatezoom",
+  "_release": "81c2cc4946",
+  "_resolution": {
+    "type": "commit",
+    "commit": "81c2cc4946f6bebc33c0d8e804b046b36fa1bc61"
+  },
+  "_source": "https://github.com/elevateweb/elevatezoom.git",
+  "_target": "81c2cc4946f6bebc33c0d8e804b046b36fa1bc61",
+  "_originalSource": "https://github.com/elevateweb/elevatezoom.git"
+}
