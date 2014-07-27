@@ -18,21 +18,33 @@
     "string": "^1.9.0"
   },
   "devDependencies": {
+    "event-stream": "^3.1.7",
     "gulp": "^3.7.0",
     "gulp-angular-templatecache": "^1.2.0",
     "gulp-changed": "^0.4.0",
     "gulp-clean": "^0.3.1",
-    "gulp-concat": "^2.2.0",
+    "gulp-concat": "~2.3.4",
+    "gulp-filesize": "0.0.6",
+    "gulp-htmlbuild": "^0.2.0",
+    "gulp-if": "^1.2.4",
+    "gulp-imagemin": "~0.6.2",
     "gulp-jade": "^0.6.0",
     "gulp-jshint": "^1.6.2",
     "gulp-less": "^1.2.3",
     "gulp-livereload": "^2.0.0",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-ng-annotate": "^0.2.0",
+    "gulp-ngmin": "~0.3.0",
+    "gulp-notify": "^1.4.0",
+    "gulp-plumber": "^0.6.4",
     "gulp-preprocess": "^1.1.1",
     "gulp-rename": "^1.2.0",
     "gulp-rimraf": "^0.1.0",
-    "gulp-uglify": "^0.3.0",
+    "gulp-sourcemaps": "^1.1.0",
+    "gulp-uglify": "~0.3.1",
     "gulp-util": "^2.2.16",
     "gulp-watch": "^0.6.8",
-    "gulp.spritesmith": "^1.1.0"
+    "gulp.spritesmith": "^1.1.0",
+    "imagemin-pngquant": "^0.1.2"
   }
 }

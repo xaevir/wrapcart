@@ -18,7 +18,7 @@ var baseConfig = {
 var platformConfig = {
   development: {
     app: {
-      port: 8002
+      port: 8005
     },
     rethinkdb: {
       host: 'localhost',
@@ -29,20 +29,24 @@ var platformConfig = {
 
   test: {
     app: {
-      port: 9001
+      port: 8006
     },
-    mongo: {
-      url: 'mongodb://localhost:27017/wrapit-test'
-    }
+    rethinkdb: {
+      host: 'localhost',
+      port: '28015',
+      db: 'wrapit'
+    },
   },
 
   production: {
     app: {
-      port: process.env.PORT || 8002,
+      port: process.env.PORT || 8007,
       cacheTime: 0   // 7 * 24 * 60 * 60 * 1000 /* default caching time (7 days) for static files, calculated in milliseconds */
     },
-    mongo: {
-      url: 'mongodb://localhost:27017/wrapit'
+    rethinkdb: {
+      host: 'localhost',
+      port: '28015',
+      db: 'wrapit'
     },
   }
 };

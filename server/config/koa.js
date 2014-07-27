@@ -3,16 +3,18 @@
 
 var logger = require('koa-logger'),
     config = require('./config'),
-    send = require('koa-send');
+    send = require('koa-send'),
+    gzip = require('koa-gzip');
 
 //  fs = require('fs'),
 //  jwt = require('koa-jwt'),
 
 module.exports = function (app) {
   // middleware configuration
-  if (config.app.env !== 'test') {
+  if (config.app.env !== 'test') 
     app.use(logger());
-  }
+  
+  app.use(gzip());
 
   // register special controllers which should come before any jwt token check and be publicly accessible
   //require('../controllers/public').init(app);
@@ -20,7 +22,7 @@ module.exports = function (app) {
   require('../controllers/buy').init(app);
 
   // serve the angular static files from the /client directory
-  var sendOpts = {root: 'app'};  //, maxage: config.app.cacheTime
+  var sendOpts = {root: app.env === 'production' ? 'dist' : 'app' };  //, maxage: config.app.cacheTime
   app.use(function *(next) {
     // skip any route that starts with /api as it doesn't have any static files
     if (this.path.substr(0, 5).toLowerCase() === '/api/') {

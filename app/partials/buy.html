@@ -1,0 +1,79 @@
+
+<div class="container buy-page-wrapper">
+  <div class="row">
+    <div class="col-sm-6">
+      <div id="dress-display">
+        <h1>View the Different Styles in Light and Dark</h1>
+        <div class="outer-nav">
+          <ul class="nav nav-pills">
+            <li ng-class="{'active':photosGroup=='light'}" class="active"><a href="#" ng-click="photosGroup = 'light'">Light</a></li>
+            <li ng-class="{'active':photosGroup=='dark'}"><a href="#" ng-click="photosGroup = 'dark'">Dark</a></li>
+          </ul>
+        </div>
+        <ul id="dress-stage">
+          <div class="height-holder">
+            <li ng-repeat="photo in photosList | filter: {group: photosGroup}" class="fade-replace-1"><a href="#" ng-click="activatePhoto(photo.name)"><img ng-src="/img/mannequin/{{photo.name}}-small.jpg"/></a></li>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <section id="image"><a id="placeholder" href="#" class="zoom"><img ng-src="/img/mannequin/{{photoActive}}-medium.jpg"/></a></section>
+    </div>
+  </div>
+  <div id="product-name" hue-change="hue-change" ng-include="'/img/buy-title.svg'"></div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form id="buySelectionForm" name="buySelectionForm" novalidate="novalidate">
+        <div class="row">
+          <div class="col-md-6">
+            <section id="dress-length">
+              <h2 class="title">Wrap Length</h2>
+              <div ng-repeat="dressLength in options.dressLength" for="{{dressLength.name}}" class="radio">
+                <label>
+                  <input id="{{dressLength.name}}" type="radio" ng-model="selected.dressLength" value="{{dressLength.name}}" name="dressLength"/><span style="font-size: 16px; margin-right: 10px;">{{dressLength.name | capitalize }}</span>
+                  <span class="text-muted">{{dressLength.description}}</span>
+                </label>
+              </div>
+            </section>
+          </div>
+          <div class="col-md-6">
+            <section id="neck-opening">
+              <h2 class="title">Neck Opening</h2>
+              <div ng-repeat="neckOpening in options.neckOpening" for="{{neckOpening.name}}" class="radio">
+                <label>
+                  <input id="{{neckOpening.name}}" type="radio" ng-model="selected.neckOpening" value="{{neckOpening.name}}" name="neckOpening"/><span style="font-size: 16px; margin-right: 10px;">{{neckOpening.name | capitalize }}</span>
+                  <span class="text-muted">{{neckOpening.description}}</span>
+                </label>
+              </div>
+            </section>
+          </div>
+        </div>
+        <section id="description">
+          <h2 class="title">Description</h2>
+          <p>The material is made from a modern fabric. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+        </section>
+        <section id="price">
+          <div class="form-group">
+            <label class="control-label col-sm-3">Price</label>
+            <div class="col-sm-9">
+              <div class="height-holder">
+                <p ng-repeat="price in (selected.price = (options.price | filter: {parents: selected.dressLength}))" class="bounce-fade">{{price.name | currency}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="color">
+          <h2 class="title">Available Colors</h2>
+          <div ng-repeat="color in options.color | filter:{parents: selected.dressLength}" class="swatch multi-bounce">
+            <label for="{{color.name}}" style="background-color: {{color.hex}}"></label>
+            <input id="{{color.name}}" type="radio" ng-model="selected.color" value="{{color.name}}" name="color"/>
+          </div>
+        </section>
+        <Section id="buy-button">
+          <button type="button" class="btn btn-danger btn-lg btn-block">Buy</button>
+        </Section>
+      </form>
+    </div>
+  </div>
+</div>
