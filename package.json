@@ -4,7 +4,6 @@
   "description": "shopping cart example",
   "dependencies": {
     "co": "~3.0.6",
-    "co-mongo": "0.0.2",
     "jade": "~1.3.1",
     "koa": "~0.6.1",
     "koa-better-body": "0.0.1",
@@ -14,7 +13,6 @@
     "koa-send": "^1.2.3",
     "lodash": "^2.4.1",
     "rethinkdb": "^1.13.0-1",
-    "rethinkdbdash": "^1.13.6",
     "string": "^1.9.0"
   },
   "devDependencies": {
