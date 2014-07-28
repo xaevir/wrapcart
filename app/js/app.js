@@ -19,12 +19,12 @@ angular.module('wrapApp', ['ngRoute', 'ngAnimate', 'ngMessages', 'mgcrea.ngStrap
         title: 'Contact - WrapIt by Tish',
         pageId: 'contact'
       })
-//      .when('/buy', {
-//        templateUrl: '/partials/buy.html',
-//        title: 'Buy - WrapIt by Tish',
-//        controller: 'buyCtrl',
-//        pageId: 'buy'
-//      })
+      .when('/buy', {
+        templateUrl: '/partials/buy.html',
+        title: 'Buy - WrapIt by Tish',
+        controller: 'buyCtrl',
+        pageId: 'buy'
+      })
       .otherwise({
         redirectTo: '/'
       });
