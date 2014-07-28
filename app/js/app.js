@@ -19,12 +19,12 @@ angular.module('wrapApp', ['ngRoute', 'ngAnimate', 'ngMessages', 'mgcrea.ngStrap
         title: 'Contact - WrapIt by Tish',
         pageId: 'contact'
       })
-      .when('/buy', {
-        templateUrl: '/partials/buy.html',
-        title: 'Buy - WrapIt by Tish',
-        controller: 'buyCtrl',
-        pageId: 'buy'
-      })
+//      .when('/buy', {
+//        templateUrl: '/partials/buy.html',
+//        title: 'Buy - WrapIt by Tish',
+//        controller: 'buyCtrl',
+//        pageId: 'buy'
+//      })
       .otherwise({
         redirectTo: '/'
       });
@@ -32,6 +32,7 @@ angular.module('wrapApp', ['ngRoute', 'ngAnimate', 'ngMessages', 'mgcrea.ngStrap
   .run(function ($location, $rootScope) {
     // set actions to be taken each time the user navigates
     $rootScope.$on('$routeChangeSuccess', function (event, current) {
+      if (!current.$$route) return; // it was blank because no match 
       // set page title
       $rootScope.title = current.$$route.title;
       $rootScope.showNav = (current.$$route.originalPath === '/') ?  false : true;
